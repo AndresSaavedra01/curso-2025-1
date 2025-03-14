@@ -1,0 +1,31 @@
+
+.data
+.mensaje .asciz "%ld \n"
+
+.text
+.global main
+.extern .printf    #ultilizar la funcion printf de la libreria de libc
+
+
+main:
+
+   subq $8, %rsp
+
+   mov $4, %rax    #rax = 4
+   mov $5, %rbx    #rbx = 5
+   add %rbx, %rax  # rax = rax+rbx
+
+
+#imprimir mensaje 
+#printf("%ld \n", rax)
+
+   mov $mensaje, %rdi
+   mov %rax, %rsi
+   call printf 
+   
+   addq $8, %rsp
+
+
+   mov $60, %rax   # se indica que se va usar la funcion exit
+   mov $0, %rdi    #se pasa a la funcion exit() el valor 0 osea exit(0)
+   syscall         #llama las funciones del sistema
