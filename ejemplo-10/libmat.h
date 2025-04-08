@@ -1,0 +1,3 @@
+
+
+char codificar(char letra);
